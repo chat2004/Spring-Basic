@@ -12,7 +12,7 @@
     </bean>
     
     <!-- Define your beans here -->
-    <bean id="myCoach" class="com.love2code.springdemo.TrackCoach" scope="prototype" 
+    <bean id="myCoach" class="com.love2code.springdemo.TrackCoach" 
     	init-method="doMyStartupStuff" destroy-method="doMyCleanupStuff">
     	<!-- setup constructor injection -->
     	<constructor-arg ref="myFortuneService"></constructor-arg>

@@ -7,21 +7,9 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- Define the dependency -->
-    <bean id="myFortuneService" class="com.love2code.springdemo.HappyFortuneService">
-    </bean>
-    
-    <!-- Define your beans here -->
-    <bean id="myCoach" class="com.love2code.springdemo.TrackCoach" scope="prototype" 
-    	init-method="doMyStartupStuff" destroy-method="doMyCleanupStuff">
-    	<!-- setup constructor injection -->
-    	<constructor-arg ref="myFortuneService"></constructor-arg>
-    </bean>
-    
+    <!-- add entry to enable component scanning -->
+    <context:component-scan base-package="com.luv2code.springdemo"></context:component-scan>
     
 </beans>
-
-
-
 
 

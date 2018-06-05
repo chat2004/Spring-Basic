@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luv2code.springdemo.dao.CustomerDAO;
 import com.luv2code.springdemo.entity.Customer;
@@ -48,5 +49,37 @@ public class CustomerController {
 		customerService.saveCustomer(theCustomer);
 		
 		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("customerId") int theId, Model theModel) {
+		// get customer from the database
+		Customer theCustomer = customerService.getCustomer(theId);
+
+		// set customer as model attribute to pre-populate form
+		theModel.addAttribute("customer", theCustomer);
+		
+		// send over to our form
+		return "customer-form";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int theId) {
+
+		// delete the customer
+		customerService.deleteCustomer(theId);
+		
+		return "redirect:/customer/list";
+	}
+	
+	@PostMapping("search")
+	public String searchCustomers(@RequestParam("theSearchName") String theSearchName, Model theModel) {
+		// get customers from the service
+		List<Customer> theCustomers = customerService.searchCustomers(theSearchName);
+		
+		// add the customers to model
+		theModel.addAttribute("customers", theCustomers);
+		
+		return "list-customers";
 	}
 }

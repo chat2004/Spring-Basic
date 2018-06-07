@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h2>Welcome to Spring Security Demo Home Page</h2>
+	<hr>
+	security demo
 </body>
 </html>
